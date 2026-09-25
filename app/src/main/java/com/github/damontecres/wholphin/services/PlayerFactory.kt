@@ -32,6 +32,7 @@ import com.github.damontecres.wholphin.preferences.MediaExtensionStatus
 import com.github.damontecres.wholphin.preferences.PlayerBackend
 import com.github.damontecres.wholphin.preferences.get
 import com.github.damontecres.wholphin.services.hilt.AuthOkHttpClient
+import com.github.damontecres.wholphin.util.EqualBitrateVariantTrackSelectionFactory
 import com.github.damontecres.wholphin.util.WholphinDispatchers
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.peerless2012.ass.media.AssHandler
@@ -218,7 +219,7 @@ class PlayerFactory
         private fun createTrackSelector(
             tunneling: Boolean? = null,
             disableAudioOffload: Boolean = false,
-        ) = DefaultTrackSelector(context).apply {
+        ) = DefaultTrackSelector(context, EqualBitrateVariantTrackSelectionFactory()).apply {
             val offloadMode =
                 if (disableAudioOffload) {
                     AudioOffloadPreferences.AUDIO_OFFLOAD_MODE_DISABLED
