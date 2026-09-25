@@ -33,6 +33,7 @@ import com.github.damontecres.wholphin.preferences.PlayerBackend
 import com.github.damontecres.wholphin.preferences.get
 import com.github.damontecres.wholphin.services.hilt.AuthOkHttpClient
 import com.github.damontecres.wholphin.util.BitstreamFilteringCodecAdapterFactory
+import com.github.damontecres.wholphin.util.EqualBitrateVariantTrackSelectionFactory
 import com.github.damontecres.wholphin.util.Hdr10PlusMaskingFilter
 import com.github.damontecres.wholphin.util.WholphinDispatchers
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -223,7 +224,7 @@ class PlayerFactory
         private fun createTrackSelector(
             tunneling: Boolean? = null,
             disableAudioOffload: Boolean = false,
-        ) = DefaultTrackSelector(context).apply {
+        ) = DefaultTrackSelector(context, EqualBitrateVariantTrackSelectionFactory()).apply {
             val offloadMode =
                 if (disableAudioOffload) {
                     AudioOffloadPreferences.AUDIO_OFFLOAD_MODE_DISABLED
